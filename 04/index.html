@@ -23,39 +23,127 @@
       width: 50px !important;
     }
 
+    .text-large {
+      font-size: 1.5em;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .square {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      border: 1px solid black;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .yellow {
+      background-color: yellow;
+    }
+
+    .purple {
+      background-color: purple;
+    }
+
+    .wide {
+      width: 150px;
+    }
+
+    .mb {
+      margin-bottom: 10px;
+    }
+
   </style>
 
 </head>
 
 <body>
   <div id="exercise">
-    <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
+    <!-- 1) Start the Effect with the Button. The Effect should alternate 
+      the "highlight" or "shrink" class on each new setInterval tick (attach
+      respective class to the div with id "effect" below) -->
     <div>
+      <h2>Problem 1: Interval Effect</h2>
       <button @click="startEffect">Start Effect</button>
-      <div id="effect"></div>
+      <div id="effect" :class="effectClass"></div>
     </div>
+    <hr>
     <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
-    <div>I got no class :(</div>
+    <h2>Problem 2: Array class syntax</h2>
+    <div :class="['text-large', 'bold']">I got no class :(</div>
+    <hr>
     <!-- 3) Let the user enter a class (create some example classes) and attach it -->
     <div>
-      <input type="text">
-      <div></div>
+      <h2>Problem 3: Choose a class</h2>
+      <h3>Enter a class from the list:</h3>
+      <ul>
+        <li>red</li>
+        <li>yellow</li>
+        <li>purple</li>
+      </ul>
+      <input type="text" v-model="color">
+      <div class="square" :class="color"></div>
     </div>
+    <hr>
     <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
     <div>
-      <input type="text">
-      <input type="text">
-      <div></div>
+      <h2>Problem 4: Dynamic Class</h2>
+      <div>
+        <label>
+          Enter a class:
+          <input type="text" v-model="color2">
+        </label>
+      </div>
+      <br>
+      <div>
+        <label>
+          True of False?
+          <input type="text" v-model="isWideInput">
+        </label>
+      </div>
+      <div class="square" :class="[color2, {wide: isWide}]"></div>
     </div>
+    <hr>
     <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
     <div>
-      <input type="text">
-      <div></div>
+      <h2>Problem 5: Dynamic Style</h2>
+      <div class="mb">
+        <label>
+          width:
+          <input type="text" v-model="p5input.width">
+        </label>
+      </div>
+      <div class="mb">
+        <label>
+          height:
+          <input type="text" v-model="p5input.height">
+        </label>
+      </div>
+      <div class="mb">
+        <label>
+          border-width:
+          <input type="text" v-model="p5input.border">
+        </label>
+      </div>
+      <div class="mb">
+        <label>
+          background-color:
+          <input type="text" v-model="p5input.color">
+        </label>
+      </div>
+      <div :style="p5style"></div>
     </div>
+    <hr>
     <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
     <div>
-      <button v-on:click="startProgress">Start Progress</button>
-      <div></div>
+      <h2>Problem 6: Progress Bar</h2>
+      <button class="mb" v-on:click="startProgress">Start Progress</button>
+      <div style="height: 15px; background-color: gray" :style="progBarStyle"></div>
     </div>
   </div>
   <script src="app.js"></script>
